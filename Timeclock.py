@@ -57,5 +57,8 @@ def tour_to_text(hour,minute):
     # Остальное - минут
 
 a,b=map(int,input().split())
-
-print(tour_to_text(a,b))
+if a != None and b != None:
+    print(tour_to_text(a,b))
+else:
+    print('Введены недопустимые данные')
+    
