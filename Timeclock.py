@@ -34,7 +34,7 @@ def what_minute(min):
 
 def tour_to_text(hour,minute):
     ig = ''
-    if 0<=hour<=23 and 0<=minute<=59:
+    if 0<=hour<=23 and 0<=minute<=59 and hour != None and minute != None:
         if hour == 0 and minute == 0:
             return print('Полночь')
         if hour == 12 and minute == 0:
@@ -57,4 +57,5 @@ def tour_to_text(hour,minute):
     # Остальное - минут
 
 a,b=map(int,input().split())
+
 print(tour_to_text(a,b))
