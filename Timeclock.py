@@ -56,12 +56,16 @@ def tour_to_text(hour,minute):
     # 2-4, 22-24, 32-34, 42-44, 52, 53, 54 - минуты
     # Остальное - минут
 
-a=str(input())
-if len(a) != 5:
-    print('Введены недопустимые данные')
-else:
-    hor=int(a[:2])
-    min=int(a[3:])
-    print(tour_to_text(hor,min))
+def main():
+    a=str(input())
+    if len(a) != 5:
+        print('Введены недопустимые данные')
+    else:
+       hor=int(a[:2])
+       min=int(a[3:])
+       print(tour_to_text(hor,min))
+
+if 1 == 1:
+    main()
 
 
