@@ -36,9 +36,9 @@ def tour_to_text(hour,minute):
     ig = ''
     if 0<=hour<=23 and 0<=minute<=59 and hour != None and minute != None:
         if hour == 0 and minute == 0:
-            return print('Полночь')
+            return 'Полночь'
         if hour == 12 and minute == 0:
-            return print('Полдень')
+            return 'Полдень'
         elif minute == 0:
             ig = what_hour(hour) + ' ' + what_hour_text(hour)+ ' ' + what_minute(minute)
             return ig
@@ -56,6 +56,12 @@ def tour_to_text(hour,minute):
     # 2-4, 22-24, 32-34, 42-44, 52, 53, 54 - минуты
     # Остальное - минут
 
-a,b=map(int,input().split())
-print(tour_to_text(a,b))
+a=str(input())
+if len(a) != 5:
+    print('Введены недопустимые данные')
+else:
+    hor=int(a[:2])
+    min=int(a[3:])
+    print(tour_to_text(hor,min))
+
 
