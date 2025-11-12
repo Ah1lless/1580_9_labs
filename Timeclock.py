@@ -1,6 +1,7 @@
 def osibka(time):
     if len(time) != 5 or 0<=int(time[:2])<=23 or 0<=int(time[3:])<=59:
         return True
+        
     else:
         return False
 
@@ -87,6 +88,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
