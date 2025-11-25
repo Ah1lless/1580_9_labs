@@ -5,10 +5,10 @@
     если нет то False
     
 функция какое время суток:
-    если 0 <= hour <= 5: то ночь
-    если 6 <= hour <= 11: то утра
-    если 12 <= hour <= 17: то дня
-    если 18 <= hour <= 23: то вечера
+    если 0 <= часы <= 5: то ночь
+    если 6 <= часы <= 11: то утра
+    если 12 <= часы <= 17: то дня
+    если 18 <= часы <= 23: то вечера
 
 функция окончания часа:
     если час > 12:
@@ -19,13 +19,9 @@
     если остальные: то число часа + "часов"
     
 функция окончание минут:
-    все минуты:
-    minut=[1,21,31,41,51]
-    minuti=[2,3,4,22,23,24,32,33,34,42,43,44,52,53,54]
-    
-    если минуты в minut: то число минут + "минута"
-    если минуты в minuti: то число минут + "минуты"
-    если остальные: то число минут + "минут"
+    если минуты в определенных минутах: то число минут + "минута"
+    если минуты в других определенных минутах: то число минут + "минуты"
+    если не то и не то: то число минут + "минут"
     
 
 функция общая:
@@ -45,12 +41,14 @@
 '''
 
 def osibka(time):
-    hour=time[:2]
-    minn=time[3:]
-    opmin=[i for i in range(1,61)]
+    try:
+        hour,minut=time.split()
+    except ValueError:
+        return True
+    opmin=[i for i in range(60)]
     ophour=[i for i in range(24)]
     
-    if len(time) == 5 and int(minn) in opmin and int(hour) in ophour and time[2]==" ":
+    if len(time) <=5 and int(minut) in opmin and int(hour) in ophour and (time[2]==" " or time[1]==" ") and hour[0] !="-" and minut[0] != "-":
         return False
     else:
         return True
@@ -72,7 +70,7 @@ def what_hour(hour):
     if hour > 12:
         hour = hour - 12
 
-    elif hour == 1:
+    if hour == 1:
         return str(hour) + ' ' + 'час'
 
     elif hour == 2 or hour == 3 or hour == 4:
@@ -81,20 +79,20 @@ def what_hour(hour):
     else:
         return str(hour) + ' ' + 'часов'
 
-def what_minute(min):
+def what_minute(minn):
     minut=[1,21,31,41,51]
     minuti=[2,3,4,22,23,24,32,33,34,42,43,44,52,53,54]
 
-    if min == 0:
+    if minn == 0:
         return 'ровно'
-    elif min in minut:
-        return str(min) + ' ' + 'минута'
+    elif minn in minut:
+        return str(minn) + ' ' + 'минута'
 
-    elif min in minuti:
-        return str(min) + ' ' + 'минуты'
+    elif minn in minuti:
+        return str(minn) + ' ' + 'минуты'
 
     else:
-        return str(min) + ' ' +'минут'
+        return str(minn) + ' ' +'минут'
 
 def tour_to_text(hour,minute):
     ig = ''
@@ -124,20 +122,24 @@ def tour_to_text(hour,minute):
     '''
 
 def main():
-    a=str(input())
-    if osibka(a):
-        print('Введены недопустимые данные')
+    a=str(input("Это программа перевода числовых данных времени в текст. Введите данные в виде ЧЧ ММ: "))
+    try:
+        hour,minn=a.split()
+    except ValueError:
+        print('Введены недопустимые данные. Введите данные в виде ЧЧ ММ')
     else:
-        hor=int(a[:2])
-        min=int(a[3:])
-        print(tour_to_text(hor,min))
+        if osibka(a):
+            print('Введены недопустимые данные. Введите данные в виде ЧЧ ММ')
+        else:
+            hour,minn=a.split()
+            hour=int(hour)
+            minn=int(minn)
+            print(tour_to_text(hour,minn))
 
+        
 if __name__ == "__main__":
     main()
-
-
-
-
+    
 
 
 
