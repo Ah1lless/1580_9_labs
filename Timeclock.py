@@ -54,16 +54,16 @@ def osibka(time):
         return True
 
 def what_hour_text(hour):
-    if 0 <= hour <= 5:
+    if 0 <= hour < 6:
         return 'ночи'
 
-    elif 6 <= hour <= 11:
+    elif 6 <= hour < 12:
         return 'утра'
 
-    elif 12 <= hour <= 17:
+    elif 12 <= hour < 18:
         return 'дня'
 
-    elif 18 <= hour <= 23:
+    elif 18 <= hour < 24:
         return 'вечера'
 
 def what_hour(hour):
@@ -123,18 +123,18 @@ def tour_to_text(hour,minute):
 
 def main():
     print("Это программа перевода числовых данных времени в текст.")
-    a=str(input("Введите данные в виде ЧЧ ММ: "))
+    vvod=str(input("Введите данные в виде ЧЧ ММ: "))
     try:
-        hour,minn=a.split()
+        hour,minn=vvod.split()
     except ValueError:
         print('Введены недопустимые данные. Введите данные в виде ЧЧ ММ')
         print("Введите часы от 0 до 23 и минуты от 0 до 59")
     else:
-        if osibka(a):
+        if osibka(vvod):
             print('Введены недопустимые данные. Введите данные в виде ЧЧ ММ')
             print("Введите часы от 0 до 23 и минуты от 0 до 59")
         else:
-            hour,minn=a.split()
+            hour,minn=vvod.split()
             hour=int(hour)
             minn=int(minn)
             print(tour_to_text(hour,minn))
@@ -143,6 +143,7 @@ def main():
 if __name__ == "__main__":
     main()
     
+
 
 
 
