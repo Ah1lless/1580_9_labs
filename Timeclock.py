@@ -52,15 +52,15 @@
     
 '''
 
-def osibka(time):
+def osibka(vvod):
     try:
-        hour,minut=time.split()
+        hour,minut=vvod.split()
     except ValueError:
         return True
     opmin=[i for i in range(60)]
     ophour=[i for i in range(24)]
     
-    if len(time) <=5 and int(minut) in opmin and int(hour) in ophour and (time[2]==" " or time[1]==" ") and hour[0] !="-" and minut[0] != "-":
+    if len(vvod) <=5 and int(minut) in opmin and int(hour) in ophour and (vvod[2]==" " or vvod[1]==" ") and hour[0] !="-" and minut[0] != "-":
         return False
     else:
         return True
@@ -91,35 +91,35 @@ def what_hour(hour):
     else:
         return str(hour) + ' ' + 'часов'
 
-def what_minute(minn):
-    if str(minn)[0] == "1" and len(str(minn)) != 1:
-        return "минут"
+def what_minute(minut):
+    if str(minut)[0] == "1" and len(str(minut)) != 1:
+        return str(minut) + ' ' + "минут"
     else:
-        if minn % 10 == 1:
-            return "минута"
+        if minut % 10 == 1:
+            return str(minut) + ' ' + "минута"
             
-        elif 2 <= minn % 10 <= 4:
-            return "минуты"
+        elif 2 <= minut % 10 <= 4:
+            return str(minut) + ' ' + "минуты"
             
         else:
-            return "минут"
+            return str(minut) + ' ' + "минут"
 
-def tour_to_text(hour,minute):
-    ig = ''
+def tour_to_text(hour,minut):
+    itog = ''
     
-    if hour == 0 and minute == 0:
+    if hour == 0 and minut == 0:
         return 'Полночь'
 
-    if hour == 12 and minute == 0:
+    if hour == 12 and minut == 0:
         return 'Полдень'
 
-    elif minute == 0:
-        ig = what_hour(hour) + ' ' + what_hour_text(hour)+ ' ' + what_minute(minute)
-        return ig
+    elif minut == 0:
+        itog = what_hour(hour) + ' ' + what_hour_text(hour)+ ' ' + what_minute(minut)
+        return itog
 
     else:
-        ig = what_hour(hour) + ' ' + what_minute(minute) + ' ' + what_hour_text(hour)
-        return ig
+        itog = what_hour(hour) + ' ' + what_minute(minut) + ' ' + what_hour_text(hour)
+        return itog
 
 
     '''
@@ -135,7 +135,7 @@ def main():
     print("Это программа перевода числовых данных времени в текст.")
     vvod=str(input("Введите данные в виде ЧЧ ММ: "))
     try:
-        hour,minn=vvod.split()
+        hour,minut=vvod.split()
     except ValueError:
         print('Введены недопустимые данные. Введите данные в виде ЧЧ ММ')
         print("Введите часы от 0 до 23 и минуты от 0 до 59")
@@ -144,15 +144,16 @@ def main():
             print('Введены недопустимые данные. Введите данные в виде ЧЧ ММ')
             print("Введите часы от 0 до 23 и минуты от 0 до 59")
         else:
-            hour,minn=vvod.split()
+            hour,minut=vvod.split()
             hour=int(hour)
-            minn=int(minn)
-            print(tour_to_text(hour,minn))
+            minut=int(minut)
+            print(tour_to_text(hour,minut))
 
         
 if __name__ == "__main__":
     main()
     
+
 
 
 
