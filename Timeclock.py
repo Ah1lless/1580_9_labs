@@ -60,10 +60,13 @@ def osibka(vvod):
     opmin=[i for i in range(60)]
     ophour=[i for i in range(24)]
     
-    if len(vvod) <=5 and int(minut) in opmin and int(hour) in ophour and (vvod[2]==" " or vvod[1]==" ") and hour[0] !="-" and minut[0] != "-":
-        return False
-    else:
-        return True
+    try:
+        if len(vvod) <=5 and int(minut) in opmin and int(hour) in ophour and (vvod[2]==" " or vvod[1]==" ") and hour[0] !="-" and minut[0] != "-":
+            return False
+        else:
+            return True
+    except ValueError:
+        return True    
 
 def what_hour_text(hour):
     if 0 <= hour < 6:
@@ -153,7 +156,6 @@ def main():
 if __name__ == "__main__":
     main()
     
-
 
 
 
