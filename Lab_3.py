@@ -53,6 +53,7 @@ class stars():
     def __del__(self):
         print(f"Удаление ID {self._id}")
 
+"""
 class StarsDatabase():
     def __init__(self, filename="stars_db.txt"):
         self.filename = filename
@@ -120,3 +121,4 @@ class StarsDatabase():
                 return
             i += 1
         print(f"Звезда {name} не найдена")
+"""
