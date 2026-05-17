@@ -53,15 +53,3 @@ class stars():
     def __del__(self):
         print(f"Удаление ID {self._id}")
 
-"""
-def create_star():
-    name = check_err_str('Введите название звезды: ')
-    radius = check_err_val('Введите радиус звезды в киллометрах: ')
-    mass = check_err_val('Введите массу звезды в килограммах: ')
-    distance = check_err_val('Введите расстояние от звезды до Солнца в киллометрах: ')
-    star_type = check_err_str('Введите тип звезды: ')
-
-    star = stars(name, radius, mass, distance, star_type)
-    stars_list.append(star)
-    print(f"Звезда {star.name} успешно создана")
-"""
