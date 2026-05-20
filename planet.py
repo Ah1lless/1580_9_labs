@@ -30,12 +30,12 @@ class stars():
     def __gt__(self, other):
         if not isinstance(other, stars):
             return NotImplemented
-        return self.distance > other.distance
+        return self.mass > other.mass
 
     def __le__(self, other):
         if not isinstance(other, stars):
             return NotImplemented
-        return self.distance <= other.distance
+        return self.radius <= other.radius
 
     def __ge__(self, other):
         if not isinstance(other, stars):
@@ -52,4 +52,6 @@ class stars():
 
     def __del__(self):
         print(f"Удаление ID {self._id}")
+
+
 
