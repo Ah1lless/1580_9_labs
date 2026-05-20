@@ -1,13 +1,8 @@
-import os
 from planet import stars
 
 stars_list = []
 
 def load_stars_db(file_name):
-    if not os.path.isfile(file_name):
-        print('Файла не существует, попробуйте снова')
-        return
-
     try:
         with open(file_name, 'r', encoding='UTF-8') as file:
             for string in file:
@@ -27,7 +22,6 @@ def save_stars_db(file_name):
         for star in stars_list:
             print(f'{star.name}, {star.radius}, {star.mass}, {star.distance}, {star.type}', file=output)
         print("Звезды сохранены в файл")
-
 
 def check_err_val(val_check):
     while True:
@@ -175,104 +169,34 @@ def search_star():
 
         print('Звезда не найдена. Попробуйте снова.')
 
-def cocktail_shaker_sort(item_list, key, reverse=False):
-    if len(item_list) <= 1:
-        return
 
-    left = 0
-    right = len(item_list) - 1
-    while left < right:
+
+def sort_planet():
+    if stars_list == []:
+        print('Нет планет. Нечего сортировать')
+
+    print('Выберите сортировку: по расстоянию(1), по радиусу(2), по массе(3)')
+    input_choose = int(input())
+
+    if input_choose == 1:
+        Flag = 4
+    elif input_choose == 2:
+        Flag = 2
+    elif input_choose == 3:
+        Flag = 3
+    
+    length = len(stars_list)
+    for i in range(length):
         swapped = False
-
-        for i in range(left, right):
-            if (key(item_list[i]) > key(item_list[i + 1])) ^ reverse:
-                item_list[i], item_list[i + 1] = item_list[i + 1], item_list[i]
+        for j in range(0, length - i - 1):
+            coll_compare += 1
+            if stars_list[Flag][j] > stars_list[Flag][j + 1]:
+                stars_list[Flag][j], stars_list[Flag][j + 1] = stars_list[Flag][j + 1], stars_list[Flag][j]
+                coll_change += 1
                 swapped = True
-
         if not swapped:
             break
-
-        swapped = False
-        right -= 1
-
-        for i in range(right, left, -1):
-            if (key(item_list[i - 1]) > key(item_list[i])) ^ reverse:
-                item_list[i - 1], item_list[i] = item_list[i], item_list[i - 1]
-                swapped = True
-
-        if not swapped:
-            break
-
-        left += 1
-
-def get_star_id(star):
-    return star._id
-
-
-def get_star_name(star):
-    return star.name.lower()
-
-
-def get_star_type(star):
-    return star.type.lower()
-
-
-def get_star_radius(star):
-    return star.radius
-
-
-def get_star_mass(star):
-    return star.mass
-
-
-def get_star_distance(star):
-    return star.distance
-
-
-def sort_stars():
-    if not stars_list:
-        print("Список звезд пуст, нечего сортировать")
-        return
-
-    while True:
-        print('Выберите поле для сортировки:')
-        print('1 - ID')
-        print('2 - название')
-        print('3 - тип')
-        print('4 - радиус')
-        print('5 - масса')
-        print('6 - расстояние')
-        choice = input('Введите номер поля: ').strip()
-        if choice == '1':
-            field_name = 'ID'
-            key_func = get_star_id
-            break
-        elif choice == '2':
-            field_name = 'названию'
-            key_func = get_star_name
-            break
-        elif choice == '3':
-            field_name = 'типу'
-            key_func = get_star_type
-            break
-        elif choice == '4':
-            field_name = 'радиусу'
-            key_func = get_star_radius
-            break
-        elif choice == '5':
-            field_name = 'массе'
-            key_func = get_star_mass
-            break
-        elif choice == '6':
-            field_name = 'расстоянию'
-            key_func = get_star_distance
-            break
-        print('Неверный выбор, попробуйте снова.')
-
-    order = input('Сортировать по возрастанию? (да/нет): ').strip().lower()
-    reverse = order in ('нет', 'n', 'no', 'не')
-    cocktail_shaker_sort(stars_list, key=key_func, reverse=reverse)
-    print(f"Список звезд отсортирован по {field_name}")
+    return arr, coll_compare, coll_change
 
 
 def print_stars():
